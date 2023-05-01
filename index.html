@@ -1,163 +1,215 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Kalkulator</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Kalkulator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
   <div class="container mt-5">
-		<h1 class="mb-3">Kalkulator</h1>
-		<div class="form-group row">
-			<label for="max-value" class="col-sm-2 col-form-label">Zakres:</label>
-			<div class="col-sm-10">
-				<select id="max-value" class="form-control">
-					<option value="20">20</option>
-					<option value="30">30</option>
-					<option value="50">50</option>
-					<option value="100">100</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="operator" class="col-sm-2 col-form-label">Operacja:</label>
-			<div class="col-sm-10">
-				<select id="operator" class="form-control">
-					<option value="add">Dodawanie</option>
-					<option value="sub">Odejmowanie</option>
-					<option value="mul">Mnożenie</option>
-					<option value="div">Dzielenie</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="equation" class="col-sm-2 col-form-label">Równanie:</label>
-			<div class="col-sm-10">
-				<div id="equation"></div>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="answer" class="col-sm-2 col-form-label">Odpowiedź:</label>
-			<div class="col-sm-10">
-				<input type="text" id="answer" class="form-control">
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-sm-10 offset-sm-2">
-				<button id="validate" class="btn btn-primary">Sprawdź</button>
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-sm-10 offset-sm-2">
-				<div id="result"></div>
-			</div>
-		</div>
-	</div>
+    <h1 class="mb-3">Kalkulator</h1>
+    <div class="form-group row">
+      <label for="max-value" class="col-sm-2 col-form-label">Zakres:</label>
+      <div class="col-sm-10">
+        <select id="max-value" class="form-control">
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="operator" class="col-sm-2 col-form-label">Operacja:</label>
+      <div class="col-sm-10">
+        <select id="operator" class="form-control">
+          <option value="add">Dodawanie</option>
+          <option value="sub">Odejmowanie</option>
+          <option value="mul">Mnożenie</option>
+          <option value="div">Dzielenie</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="equation" class="col-sm-2 col-form-label">Równanie:</label>
+      <div class="col-sm-10">
+        <div id="equation"></div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="answer" class="col-sm-2 col-form-label">Odpowiedź:</label>
+      <div class="col-sm-10">
+        <input type="number" id="answer" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <button id="validate" class="btn btn-primary">Sprawdź</button>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <div id="result">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNSBmZ7" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script>
-document.addEventListener("DOMContentLoaded", function(){    
-  
- 	
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      $("#max-value").on("change", function () {
+        generateEquation()
+      });
 
-  $( "#max-value" ).click(function() {
-    generateEquation()
-  });  
-  
-  $( "#operator" ).click(function() {
-    generateEquation()
-  });  
- 
-  $( "#validate" ).click(function() {
-    validateAnswer()
-  });  
-  
-		// Generates a random number between min and max (inclusive)
-	function getRandomNumber(min, max) {
-			return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+      $("#operator").on("change", function () {
+        generateEquation()
+      });
 
-  // Generates a random equation based on the selected operator
-  function generateEquation() {
-    let operator = $('#operator').val();
-    let maxValue = parseInt($('#max-value').val());
+      $("#validate").click(function () {
+        validateAnswer()
+      });
 
-    let equationText = '';
-    switch (operator) {
-      case 'add':
-        let addend1 = getRandomNumber(1, maxValue);
-        let addend2 = getRandomNumber(1, maxValue);
-        equationText = `${addend1} + ${addend2} = `;
-        break;
-      case 'sub':
-        let minuend = getRandomNumber(1, maxValue);
-        let subtrahend = getRandomNumber(1, minuend);
-        equationText = `${minuend} - ${subtrahend} = `;
-        break;
-      case 'mul':
-        let factor1 = getRandomNumber(1, maxValue);
-        let factor2 = getRandomNumber(1, maxValue);
-        equationText = `${factor1} * ${factor2} = `;
-        break;
-      case 'div':
-        let dividend = getRandomNumber(1, Math.floor(maxValue*0.32));
-        let divisor = getRandomNumber(1, Math.floor(maxValue*0.30));
-        let firstNum = dividend * divisor
-        if (divisor > firstNum) {
-          dividend = divisor
-          divisor = firstNum
-          firstNum = dividend
+      // Generates a random number between min and max (inclusive)
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      function generateDivision(x) {
+        const num1 = Math.floor(Math.random() * x) + 1;
+        const num2 = Math.floor(Math.random() * x) + 1;
+
+        const quotient = Math.floor(num1 / num2);
+        const remainder = num1 % num2;
+
+        if (remainder === 0) {
+          return `${num1} / ${num2}`;
+        } else {
+          return generateDivision(x);
         }
-        equationText = `${firstNum} / ${divisor} = `;
-        break;
-      default:
-        break;
-    }
+      }
 
-    $('#equation').text(equationText);
-    $('#answer').val('');
-    $('#result').text('');
-  }
+      function generateMultiplication(x) {
+        const num1 = Math.floor(Math.random() * Math.sqrt(x)) + 1;
+        const num2 = Math.floor(Math.random() * Math.sqrt(x)) + 1;
 
-  // Validates the user's answer and displays the result
-  function validateAnswer() {
-    let operator = $('#operator').val();
-    let equation = $('#equation').text().trim();
-    let expectedAnswer = null;
+        const product = num1 * num2;
 
-    switch (operator) {
-      case 'add':
-        expectedAnswer = parseInt(equation.split(' ')[0]) + parseInt(equation.split(' ')[2]);
-        break;
-      case 'sub':
-        expectedAnswer = parseInt(equation.split(' ')[0]) - parseInt(equation.split(' ')[2]);
-        break;
-      case 'mul':
-        expectedAnswer = parseInt(equation.split(' ')[0]) * parseInt(equation.split(' ')[2]);
-        break;
-      case 'div':
-        expectedAnswer = parseInt(equation.split(' ')[0]) / parseInt(equation.split(' ')[2]);
-        break;
-      default:
-        break;
-    }
+        if (product > x) {
+          return generateMultiplication(x);
+        } else {
+          return `${num1} * ${num2}`;
+        }
+      }
 
-    let userAnswer = parseInt($('#answer').val());
+      function generateSubtraction(x) {
+        let num1 = Math.floor(Math.random() * x) + 1;
+        let num2 = Math.floor(Math.random() * x) + 1;
 
-    if (isNaN(userAnswer)) {
-      $('#result').text('Odpowiedź musi być liczbą!');
-    } else if (userAnswer === expectedAnswer) {
-      $('#result').text('Odpowiedź poprawna!');
+        if (num2 > num1) {
+          let temp = num1;
+          num1 = num2;
+          num2 = temp;
+        }
+
+        return `${num1} - ${num2}`;
+      }
+
+      function generateAddition(x) {
+
+        const num1 = Math.floor(Math.random() * x) + 1;
+        const num2 = Math.floor(Math.random() * (x - num1)) + 1;
+
+        return `${num1} + ${num2}`;
+      }
+
+      function generateEquation() {
+        let operator = $('#operator').val();
+        let maxValue = parseInt($('#max-value').val());
+
+        let equationText = '';
+        switch (operator) {
+          case 'add':
+            equationText = generateAddition(maxValue);
+            break;
+          case 'sub': ;
+            equationText = generateSubtraction(maxValue)
+            break;
+          case 'mul':
+            equationText = generateMultiplication(maxValue)
+            break;
+          case 'div':
+            equationText = generateDivision(maxValue);
+            break;
+          default:
+            break;
+        }
+
+        $('#equation').text(equationText);
+        $('#answer').val('');
+      }
+
+      // Validates the user's answer and displays the result
+      function validateAnswer() {
+        let operator = $('#operator').val();
+        let equation = $('#equation').text().trim();
+        let expectedAnswer = null;
+
+        switch (operator) {
+          case 'add':
+            expectedAnswer = parseInt(equation.split(' ')[0]) + parseInt(equation.split(' ')[2]);
+            break;
+          case 'sub':
+            expectedAnswer = parseInt(equation.split(' ')[0]) - parseInt(equation.split(' ')[2]);
+            break;
+          case 'mul':
+            expectedAnswer = parseInt(equation.split(' ')[0]) * parseInt(equation.split(' ')[2]);
+            break;
+          case 'div':
+            expectedAnswer = parseInt(equation.split(' ')[0]) / parseInt(equation.split(' ')[2]);
+            break;
+          default:
+            break;
+        }
+
+        let userAnswer = parseInt($('#answer').val());
+
+        resultBox = $('#result')
+        if (isNaN(userAnswer)) {
+          resultBox.html(`
+        <div class="alert alert-warning">
+          <span>Czy na pewno to została wpisana liczba?</span
+        </div>
+      `)
+
+        } else if (userAnswer === expectedAnswer) {
+          resultBox.html(`
+        <div class="alert alert-success">
+          <span>Jesteś Dreistein :)</span
+        </div>
+      `)
+
+          generateEquation();
+        } else {
+          resultBox.html(`
+        <div class="alert alert-danger">
+          <span>"Pomylonemisie"</span
+        </div>
+      `)
+        }
+      }
+
       generateEquation();
-    } else {
-      $('#result').text('Odpowiedź błędna. Spróbuj ponownie.');
-    }
-  }
-
-  // Generates the initial equation when the page is loaded
-  generateEquation();
-})
-	</script>
+    })
+  </script>
 </body>
 </html>
